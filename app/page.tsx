@@ -11,59 +11,13 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Reveal from "@/components/Reveal";
 
 import { Plus, X, UtensilsCrossed, BellRing, Church } from "lucide-react";
-import MapClient from "@/components/MapClient";
+import dynamic from "next/dynamic";
 
+const MapClient = dynamic(() => import("@/components/MapClient"), {
+  ssr: false,
+  loading: () => <div className="h-[320px] w-full rounded-2xl bg-black/5" />,
+});
 type Status = "YES" | "NO";
-
-const locations = {
-  type: "FeatureCollection",
-  features: [
-    {
-      type: "Feature",
-      properties: {
-        name: "Lokacija 1",
-        description: "Opis prve lokacije",
-      },
-      geometry: {
-        type: "Point",
-        coordinates: [15.9819, 45.815],
-      },
-    },
-    {
-      type: "Feature",
-      properties: {
-        name: "Lokacija 2",
-        description: "Opis druge lokacije",
-      },
-      geometry: {
-        type: "Point",
-        coordinates: [16.0, 45.81],
-      },
-    },
-    {
-      type: "Feature",
-      properties: {
-        name: "Lokacija 3",
-        description: "Opis treće lokacije",
-      },
-      geometry: {
-        type: "Point",
-        coordinates: [15.97, 45.82],
-      },
-    },
-    {
-      type: "Feature",
-      properties: {
-        name: "Lokacija 4",
-        description: "Opis četvrte lokacije",
-      },
-      geometry: {
-        type: "Point",
-        coordinates: [15.99, 45.8],
-      },
-    },
-  ],
-};
 
 export default function HomePage() {
   const [status, setStatus] = useState<Status>("YES");
