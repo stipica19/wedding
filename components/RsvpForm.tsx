@@ -19,6 +19,7 @@ export default function RsvpForm() {
   const [loading, setLoading] = useState(false);
   const [okMsg, setOkMsg] = useState<string | null>(null);
   const [errMsg, setErrMsg] = useState<string | null>(null);
+  const [website, setWebsite] = useState("");
 
   function addGuest() {
     setGuests((prev) => (prev.length >= 20 ? prev : [...prev, ""]));
@@ -46,6 +47,19 @@ export default function RsvpForm() {
       return;
     }
 
+    const nameRegex = /^[A-Za-zÀ-žČĆĐŠŽčćđšž .'’-]{2,60}$/;
+
+    for (const n of cleanedGuests) {
+      if (!nameRegex.test(n)) {
+        setErrMsg("Ime smije sadržavati samo slova i osnovne znakove (.-' ).");
+        return;
+      }
+    }
+    if (message.length > 40) {
+      setErrMsg("Poruka može imati max 40 znakova.");
+      return;
+    }
+
     setLoading(true);
     try {
       const res = await fetch("/api/rsvp", {
@@ -55,7 +69,8 @@ export default function RsvpForm() {
           status,
           guests: cleanedGuests,
           message,
-          childrenCount,
+
+          website,
         }),
       });
 
@@ -103,7 +118,7 @@ export default function RsvpForm() {
           {/* Guests multi-input */}
           <div className="space-y-2">
             <div className="flex items-center justify-between gap-3">
-              <Label>Imena gostiju</Label>
+              <Label>Podaci o gostima</Label>
               <Button
                 type="button"
                 variant="outline"
@@ -116,6 +131,14 @@ export default function RsvpForm() {
               </Button>
             </div>
 
+            <input
+              name="website"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+            />
             <div className="space-y-3">
               {guests.map((g, i) => (
                 <div key={i} className="flex items-center gap-2">
@@ -192,7 +215,7 @@ export default function RsvpForm() {
           <Button
             type="submit"
             disabled={loading}
-            className="w-full z-10 mb-10 rounded-2xl py-6 text-base bg-[var(--color-wedding-blue-soft)] text-white hover:bg-[var(--color-wedding-blue-soft)] focus:ring-4 focus:ring-[var(--color-wedding-blue-soft)/30]"
+            className="w-full z-10 mb-10 rounded-2xl py-6 text-base bg-neutral-600 text-white  focus:ring-4 focus:ring-[var(--color-wedding-blue-soft)/30]"
           >
             {loading ? "Šaljem..." : "Potvrdi"}
           </Button>

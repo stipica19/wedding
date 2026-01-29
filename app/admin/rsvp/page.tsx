@@ -10,7 +10,10 @@ export default async function AdminRsvpPage() {
   if (!session) redirect("/login");
 
   await dbConnect();
-  const items = await Rsvp.find().sort({ createdAt: -1 }).lean();
+  const items = await Rsvp.find()
+    .select({ status: 1, guests: 1, message: 1, createdAt: 1 })
+    .sort({ createdAt: -1 })
+    .lean();
 
   const yesCount = items.filter((x: any) => x.status === "YES").length;
   const noCount = items.filter((x: any) => x.status === "NO").length;

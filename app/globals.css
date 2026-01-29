@@ -26,10 +26,10 @@ body {
 }
 :root {
   --primary: #fff;
-  --bg-color: #f7f6f2;
-  --bg-envelope-color: #f5edd1;
-  --envelope-tab: #ecdeb8;
-  --envelope-cover: #e6cfa7;
+  --bg-color: #c2c2c2;
+  --bg-envelope-color: #ecece9;
+  --envelope-tab: #f3f3f3;
+  --envelope-cover: #ededed;
   --shadow-color: rgba(0, 0, 0, 0.2);
   --txt-color: #444;
   --heart-color: rgb(229, 150, 150);
@@ -38,13 +38,28 @@ body {
   transform: scale(1.15);
   transform-origin: center;
 }
-.envOverlay {
+/* .envOverlay {
   position: fixed;
   inset: 0;
   z-index: 60;
   display: grid;
   place-items: center;
   background: var(--bg-color);
+} */
+.envOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+
+  background-image:
+    linear-gradient(rgba(250, 247, 243, 0.93), rgba(250, 247, 243, 0.97)),
+    url("/bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .letter {
   overflow: hidden;
@@ -78,7 +93,7 @@ body {
 /* envelope wrapper */
 .envelope-wrapper {
   background: var(--bg-envelope-color);
-  box-shadow: 0 0 40px var(--shadow-color);
+  box-shadow: -3px 12px 40px var(--shadow-color);
   border-radius: 10px;
   position: relative;
 }

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { dbConnect } from "@/lib/mongodb";
 import Rsvp from "@/models/Rsvp";
+import { rsvpSchema } from "@/lib/rsvpSchema";
 
 export async function GET(req: Request) {
     try {
@@ -28,17 +29,43 @@ export async function POST(req: Request) {
     try {
         await dbConnect();
 
-        const body = await req.json();
+        const raw = await req.json();
+        const parsed = rsvpSchema.safeParse(raw);
 
-        const doc = await Rsvp.create({
-            status: body.status,
-            guests: body.guests,
-            message: body.message || "",
+        if (!parsed.success) {
+            return NextResponse.json(
+                { ok: false, error: "Invalid payload", details: parsed.error.flatten() },
+                { status: 400 }
+            );
+        }
+
+        const { status, guests, message } = parsed.data;
+
+        const ip =
+            req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+            req.headers.get("x-real-ip") ||
+            "";
+        const userAgent = req.headers.get("user-agent") || "";
+        const last = await Rsvp.findOne({ ip }).sort({ createdAt: -1 }).lean();
+        if (last && Date.now() - new Date(last.createdAt).getTime() < 15_000) {
+            return NextResponse.json(
+                { ok: false, error: "Too many requests" },
+                { status: 429 }
+            );
+        }
+
+        await Rsvp.create({
+            status,
+            guests,
+            message,
+            //childrenCount,
+            ip,
+            userAgent,
         });
 
-        return NextResponse.json({ ok: true, id: doc._id }, { status: 201 });
-    } catch (err) {
-        console.error(err);
+        return NextResponse.json({ ok: true }, { status: 201 });
+    } catch (e) {
+        console.error(e);
         return NextResponse.json({ ok: false, error: "Server error" }, { status: 500 });
     }
 }

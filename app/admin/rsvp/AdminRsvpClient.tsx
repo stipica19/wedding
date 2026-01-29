@@ -38,6 +38,15 @@ export default function AdminRsvpClient({ items, stats }: Props) {
               <b>{stats.totalYesGuests}</b>
             </p>
           </div>
+          <div style={{ display: "flex", gap: 8 }}>
+            <a
+              href="/api/rsvp/export?mode=per-guest"
+              style={styles.exportBtn}
+              title="Preuzmi CSV (po osobi)"
+            >
+              Preuzmi listu
+            </a>
+          </div>
         </div>
 
         <div style={styles.filters}>
@@ -146,6 +155,31 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "flex-start",
     justifyContent: "space-between",
     gap: 12,
+  },
+
+  exportBtn: {
+    border: "1px solid rgba(0,0,0,0.10)",
+    background: "#111827",
+    color: "white",
+    padding: "10px 12px",
+    borderRadius: 12,
+    fontSize: 13,
+    fontWeight: 700,
+    textDecoration: "none",
+    boxShadow: "0 1px 0 rgba(0,0,0,0.05)",
+    whiteSpace: "nowrap",
+  },
+  exportBtnSecondary: {
+    border: "1px solid rgba(0,0,0,0.10)",
+    background: "white",
+    color: "#111827",
+    padding: "10px 12px",
+    borderRadius: 12,
+    fontSize: 13,
+    fontWeight: 700,
+    textDecoration: "none",
+    boxShadow: "0 1px 0 rgba(0,0,0,0.05)",
+    whiteSpace: "nowrap",
   },
 
   h1: {
