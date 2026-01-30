@@ -12,6 +12,7 @@ type HeroProps = {
   imageSrc: string;
   imageAlt?: string;
   imageWidth?: number;
+  animate?: boolean;
 };
 
 export default function Hero({
@@ -20,6 +21,7 @@ export default function Hero({
   imageSrc,
   imageAlt = "",
   imageWidth = 350,
+  animate = false,
 }: HeroProps) {
   const heroRef = useRef<HTMLDivElement | null>(null);
   const heroImgRef = useRef<HTMLDivElement | null>(null);
@@ -77,7 +79,7 @@ export default function Hero({
       stagger: { each: 0.06, from: "center" },
       delay: 0.15,
     });
-  }, []);
+  }, [animate]);
 
   return (
     <section

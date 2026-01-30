@@ -8,6 +8,9 @@
 .font-cherish {
   font-family: var(--font-cherish), cursive;
 }
+.font-della {
+  font-family: var(--font-della), cursive;
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -85,7 +88,7 @@ body {
 
 /* wrapper like your .container */
 .envContainer {
-  height: 100vh;
+  height: 80vh;
   display: grid;
   place-items: center;
 }

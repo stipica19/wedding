@@ -98,7 +98,7 @@ export default function RsvpForm() {
         <form onSubmit={onSubmit} className="space-y-6">
           {/* Status */}
           <div className="space-y-6">
-            <Label>Dolazak</Label>
+            <Label className="font-400 uppercase">Potvrda dolaska</Label>
             <RadioGroup
               value={status}
               onValueChange={(v) => setStatus(v as Status)}
@@ -106,11 +106,11 @@ export default function RsvpForm() {
             >
               <div className="flex items-center gap-2">
                 <RadioGroupItem value="YES" id="att_yes" />
-                <Label htmlFor="att_yes">Dolazimo</Label>
+                <Label htmlFor="att_yes">Dolazim(o)</Label>
               </div>
               <div className="flex items-center gap-2">
                 <RadioGroupItem value="NO" id="att_no" />
-                <Label htmlFor="att_no">Ne dolazimo</Label>
+                <Label htmlFor="att_no">Ne dolazim(o)</Label>
               </div>
             </RadioGroup>
           </div>

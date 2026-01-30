@@ -8,20 +8,7 @@ import FooterNote from "@/components/FooterNote";
 import BgMusic from "@/components/bgMusic";
 import Preloader from "@/components/Preloader";
 import { useState } from "react";
-
-const WEDDING = {
-  couple: "Nikolina & Ivan",
-  dateLabel: "03.08.2026.",
-  timeLabel: "18:00",
-  ceremony: {
-    title: "Ceremonija",
-    place: "Crkva UZNENJA BLAŽENE DJEVICE MARIJE",
-  },
-  party: {
-    title: "Svečana večera",
-    place: "Sala RITUAL",
-  },
-};
+import InviteText from "@/components/InviteText";
 
 export default function HomePage() {
   const leftName = "Nikolina";
@@ -86,23 +73,28 @@ export default function HomePage() {
           transform: hideOverlay ? "translateY(0)" : "translateY(10px)",
           transition: "all 600ms ease",
         }}
+        className=""
       >
         {/* <img
           src="/okvir.png"
           alt=""
           className="h-50 w-50 absolute -top-10 -right-10 rotate-180 -mb-10 -ml-10 z-10 opacity-40"
         /> */}
-        <BgMusic />
+        {/* <BgMusic /> */}
         <div className="rounded-3xl bg-transparent p-2 ">
           <Hero
             leftName={leftName}
             rightName={rightName}
             imageSrc="/crkva.png"
             imageAlt="Crkva"
+            animate={hideOverlay}
           />
-          <EventDate date="03.08.2026." />
+          <InviteText />
+          <section className="mt-6">
+            <EventDate day="03" month="08" year="2026" />
+          </section>
 
-          <section className="mt-0 grid gap-4 md:grid-cols-1">
+          <section className="mt-0 grid gap-4 md:grid-cols-1 max-w-xl mx-auto">
             <div className="rounded-3xl bg-white p-2 ">
               <Schedule />
             </div>
@@ -112,7 +104,7 @@ export default function HomePage() {
           <section className="mt-5">
             {/* <img src="/srce.png" alt="" className="opacity-50 w-full" /> */}
           </section>
-          <section className="mt-6 relative">
+          <section className="mt-6 relative max-w-xl  mx-auto">
             <RsvpForm />
             {/* <img
               src="/okvir.png"

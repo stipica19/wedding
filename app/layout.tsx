@@ -20,6 +20,23 @@ export const patrickOklahoma = localFont({
   variable: "--font-patrick-oklahoma",
   display: "swap",
 });
+export const della = localFont({
+  src: [
+    {
+      path: "../public/fonts/della.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/della-bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-della",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Wedding of Nikolina & Ivan",
   description: "Join us in celebrating our special day!",
@@ -32,7 +49,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="hr">
-      <body className={`${cherish.variable} ${patrickOklahoma.variable}`}>
+      <body
+        className={`${cherish.variable} ${patrickOklahoma.variable} ${della.variable}`}
+      >
         {children}
       </body>
     </html>

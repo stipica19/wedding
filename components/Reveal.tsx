@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState, ReactNode } from "react";
 import clsx from "clsx";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 type RevealProps = {
   children: ReactNode;
@@ -22,32 +25,33 @@ export default function Reveal({
   maxShrink = 0.3,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
   const [scale, setScale] = useState(1);
 
+  // GSAP ScrollTrigger reveal with reverse on scroll up
   useEffect(() => {
     const el = ref.current;
-    if (!el || visible) return;
+    if (!el) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.unobserve(entry.target);
-          }
-        });
+    gsap.set(el, { opacity: 0, y: 24 });
+    const tween = gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      delay: (delay || 0) / 1000,
+      scrollTrigger: {
+        trigger: el,
+        start: "top 70%",
+        end: "top 60%",
+        toggleActions: "play none none reverse",
       },
-      {
-        root: null,
-        threshold: 0.12,
-        rootMargin: "0px 0px -5% 0px",
-      }
-    );
+    });
 
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [visible]);
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, [delay]);
 
   useEffect(() => {
     if (!shrink) return;
@@ -88,11 +92,9 @@ export default function Reveal({
     <div
       ref={ref}
       className={clsx(
-        "transform-gpu transition-all duration-700 ease-out will-change-[opacity,transform]",
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
-        className
+        "transform-gpu will-change-[opacity,transform] overflow-hidden",
+        className,
       )}
-      style={{ transitionDelay: `${delay}ms` }}
     >
       <div
         className="transform-gpu will-change-transform transition-transform duration-300 ease-out"
