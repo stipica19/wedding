@@ -84,7 +84,7 @@ export default function Hero({
   return (
     <section
       ref={heroRef}
-      className="text-center flex flex-col items-center min-h-[85vh] sm:min-h-fit"
+      className="text-center flex flex-col items-center min-h-[85vh] sm:min-h-fit overflow-hidden"
     >
       <div
         className="mx-auto mb-6 pt-10 min-h-[50vh] flex justify-center"
@@ -107,7 +107,7 @@ export default function Hero({
 
       <h1
         ref={heroTitleRef}
-        className="text-[55px] font-patrick tracking-tight sm:text-4xl"
+        className="text-[60px] font-patrick tracking-tight sm:text-4xl"
         style={{
           transform: `scale(${heroScale})`,
           transformOrigin: "center",
@@ -118,13 +118,13 @@ export default function Hero({
           <span
             key={`l-${i}-${ch}`}
             data-letter
-            className="inline-block will-change-transform"
+            className="inline-block text-(--heart-color) will-change-transform"
           >
             {ch}
           </span>
         ))}
         <span
-          className="font-cherish inline-block will-change-transform"
+          className="font-cherish text-(--heart-color) inline-block will-change-transform"
           data-letter
         >
           &nbsp;&amp;&nbsp;
@@ -133,7 +133,7 @@ export default function Hero({
           <span
             key={`r-${i}-${ch}`}
             data-letter
-            className="inline-block will-change-transform"
+            className="inline-block text-(--heart-color) will-change-transform"
           >
             {ch}
           </span>

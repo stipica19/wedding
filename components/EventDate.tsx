@@ -71,7 +71,7 @@ export default function EventDate({ day, month, year }: EventDateProps) {
     >
       <p
         ref={textRef}
-        className="mt-1 font-cherish text-5xl tracking-wide text-wedding-blue"
+        className="mt-1 font-cherish text-(--heart-color) text-5xl tracking-wide text-wedding-blue"
       >
         {[day, month, year].map((part, i) => (
           <span

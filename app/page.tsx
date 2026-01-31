@@ -73,13 +73,13 @@ export default function HomePage() {
           transform: hideOverlay ? "translateY(0)" : "translateY(10px)",
           transition: "all 600ms ease",
         }}
-        className=""
+        className="overflow-hidden"
       >
-        {/* <img
-          src="/okvir.png"
+        <img
+          src="/splash.png"
           alt=""
-          className="h-50 w-50 absolute -top-10 -right-10 rotate-180 -mb-10 -ml-10 z-10 opacity-40"
-        /> */}
+          className="absolute top-10 rotate-120 z-10 opacity-70 "
+        />
         {/* <BgMusic /> */}
         <div className="rounded-3xl bg-transparent p-2 ">
           <Hero
@@ -101,16 +101,20 @@ export default function HomePage() {
 
             <RsvpInfo />
           </section>
-          <section className="mt-5">
-            {/* <img src="/srce.png" alt="" className="opacity-50 w-full" /> */}
+          <section className="mt-5 relative">
+            <img
+              src="/splash.png"
+              alt=""
+              className=" absolute bottom-0  -z-10 opacity-90"
+            />
           </section>
           <section className="mt-6 relative max-w-xl  mx-auto">
             <RsvpForm />
-            {/* <img
-              src="/okvir.png"
+            <img
+              src="/splash.png"
               alt=""
-              className="h-70 w-70 absolute bottom-0 left-0 -mb-10 -ml-10 -z-10 opacity-40"
-            /> */}
+              className=" absolute bottom-0 left-0  -z-10 opacity-90"
+            />
           </section>
         </div>
 

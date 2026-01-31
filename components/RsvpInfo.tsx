@@ -20,7 +20,7 @@ export default function RsvpInfo() {
           <Button
             asChild
             variant="outline"
-            className="h-auto flex-col justify-between rounded-2xl border-black/10 bg-white px-4 py-3 text-left"
+            className="h-auto flex-col justify-between rounded-2xl border-(--heart-color)/50 bg-white px-4 py-3 text-left"
           >
             <a href="tel:+436603956035" aria-label="Nazovi Nikolinu">
               <span className="font-semibold">Nikolina</span>
@@ -31,7 +31,7 @@ export default function RsvpInfo() {
           <Button
             asChild
             variant="outline"
-            className="h-auto flex-col justify-between rounded-2xl border-black/10 bg-white px-4 py-3 text-left"
+            className="h-auto flex-col justify-between rounded-2xl border-(--heart-color)/50 bg-white px-4 py-3 text-left"
           >
             <a href="tel:+436601843086" aria-label="Nazovi Ivana">
               <span className="font-semibold">Ivan</span>

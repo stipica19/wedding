@@ -80,7 +80,7 @@ export default function RsvpForm() {
         return;
       }
 
-      setOkMsg("Hvala! Vaš odgovor je spremljen.");
+      setOkMsg("Hvala! Vaša potvrda je spremljena.");
       setStatus("YES");
       setGuests([""]);
       setMessage("");
@@ -169,25 +169,6 @@ export default function RsvpForm() {
             </p>
           </div>
 
-          {/* Children count */}
-          {/* <div className="space-y-2">
-            <Label htmlFor="childrenCount">Broj djece</Label>
-            <Input
-              id="childrenCount"
-              type="number"
-              min={0}
-              step={1}
-              value={childrenCount}
-              onChange={(e) =>
-                setChildrenCount(
-                  Math.max(0, Math.floor(Number(e.target.value || 0))),
-                )
-              }
-              className="h-12 rounded-2xl border-black/10 bg-white"
-              style={{ maxWidth: "160px" }}
-            />
-          </div> */}
-
           {/* Message */}
           <div className="space-y-2">
             <Label htmlFor="note">Poruka (opcionalno)</Label>
@@ -207,7 +188,7 @@ export default function RsvpForm() {
           ) : null}
 
           {okMsg ? (
-            <div className="rounded-2xl border border-emerald-500/30 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+            <div className="rounded-2xl border border-(--heart-color)  px-4 py-3 text-sm text-(--heart-color)">
               {okMsg}
             </div>
           ) : null}
@@ -215,7 +196,7 @@ export default function RsvpForm() {
           <Button
             type="submit"
             disabled={loading}
-            className="w-full z-10 mb-10 rounded-2xl py-6 text-base bg-neutral-600 text-white  focus:ring-4 focus:ring-[var(--color-wedding-blue-soft)/30]"
+            className="w-full z-10 mb-10 rounded-2xl py-6 text-base bg-(--heart-color)/70 text-white  focus:ring-4 focus:ring-[var(--heart-color)/30]"
           >
             {loading ? "Šaljem..." : "Potvrdi"}
           </Button>

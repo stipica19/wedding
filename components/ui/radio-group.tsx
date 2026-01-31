@@ -33,8 +33,8 @@ function RadioGroupItem({
         [&>svg]:size-6
         [&>svg]:transition
         [&>svg]:text-gray-400
-        data-[state=checked]:[&>svg]:text-red-600
-        data-[state=checked]:[&>svg]:fill-red-600
+        data-[state=checked]:[&>svg]:text-(--heart-color)
+        data-[state=checked]:[&>svg]:fill-(--heart-color)
         `,
         className,
       )}
