@@ -93,12 +93,7 @@ export default function HomePage() {
         }}
         className="overflow-hidden"
       >
-        <img
-          src="/splash.png"
-          alt=""
-          className="absolute top-10 rotate-120 z-10 opacity-70 "
-        />
-        {/* <BgMusic /> */}
+        <BgMusic />
         <div className="rounded-3xl bg-transparent p-2 ">
           <Hero
             leftName={leftName}
