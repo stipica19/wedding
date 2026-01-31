@@ -7,7 +7,7 @@ import RsvpForm from "@/components/RsvpForm";
 import FooterNote from "@/components/FooterNote";
 import BgMusic from "@/components/bgMusic";
 import Preloader from "@/components/Preloader";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import InviteText from "@/components/InviteText";
 
 export default function HomePage() {
@@ -18,18 +18,36 @@ export default function HomePage() {
   const [slide, setSlide] = useState(false);
   const [hideOverlay, setHideOverlay] = useState(false);
 
+  const autoOpenRef = useRef<number | null>(null);
+
   function openEnvelope() {
     if (isOpen) return;
 
-    setIsOpen(true); // otvori (flap + letter izlazi)
+    // ako je auto-open timer aktivan, ugasi ga
+    if (autoOpenRef.current) {
+      window.clearTimeout(autoOpenRef.current);
+      autoOpenRef.current = null;
+    }
 
-    // nakon što letter izađe, kuverta ide dolje
+    setIsOpen(true);
     setTimeout(() => setSlide(true), 1900);
-
-    // i onda makni overlay da se pokaže prava pozivnica ispod
     setTimeout(() => setHideOverlay(true), 2700);
   }
+  // auto-open nakon 1.6 sekunde ako korisnik ništa ne napravi
+  useEffect(() => {
+    if (hideOverlay || isOpen) return;
 
+    autoOpenRef.current = window.setTimeout(() => {
+      openEnvelope();
+    }, 1000);
+
+    return () => {
+      if (autoOpenRef.current) {
+        window.clearTimeout(autoOpenRef.current);
+        autoOpenRef.current = null;
+      }
+    };
+  }, [hideOverlay, isOpen]);
   return (
     <>
       {!hideOverlay && (
