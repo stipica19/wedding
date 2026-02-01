@@ -9,7 +9,7 @@
   font-family: var(--font-cherish), cursive;
 }
 .font-della {
-  font-family: var(--font-della), cursive;
+  font-family: var(--font-della1), cursive;
 }
 :root {
   --background: #ffffff;
@@ -37,9 +37,18 @@ body {
   --txt-color: #444;
   --heart-color: #d5b038;
 }
+
+.splash {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  opacity: 0.2;
+}
+
 .envelope-wrapper {
   transform: scale(1.15);
   transform-origin: center;
+  box-shadow: none;
 }
 
 .envOverlay {
@@ -49,21 +58,27 @@ body {
   display: grid;
   place-items: center;
   overflow: hidden;
-
   background-color: rgba(181, 155, 60, 0.05);
 }
 
-.splash {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  opacity: 0.2;
+/* Inner envelope container centered inside overlay */
+.wrapper {
+  height: 200px;
+  width: 300px;
+  background-color: #f5f5f5;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 0;
+  cursor: pointer;
+  background-size: cover;
 }
 
 .letter {
   overflow: hidden;
 }
-.letterImage {
+
+/* .letterImage {
   width: 100%;
   max-width: 220px;
   height: auto;
@@ -71,18 +86,18 @@ body {
   display: block;
   margin: 0 auto;
 
-  /* početno je skrivena unutra */
+
   transform: translateY(40px);
   opacity: 0;
-
   transition: all 1.2s ease-in-out;
-}
+} */
+
 .envelope-wrapper.flap .letterImage {
   transform: translateY(0px);
   opacity: 1;
 }
 
-/* wrapper like your .container */
+/* wrapper */
 .envContainer {
   height: 80vh;
   display: grid;
@@ -102,6 +117,32 @@ body {
   position: relative;
   width: 300px;
   height: 210px;
+  border-radius: 10px;
+}
+.envelope-wrapper > .envelope {
+  overflow: hidden;
+}
+
+/* ✅ otvoreno: pismo smije izać van */
+.envelope-wrapper.flap > .envelope {
+  overflow: visible;
+}
+
+/* ✅ TEXTURA PREKO CIJELE KUVERTE (iznad flapa i covera) */
+.envelope-wrapper > .envelope .envTexture {
+  position: absolute;
+  inset: 0;
+  z-index: 4; /* iznad ::before i ::after */
+  border-radius: 10px;
+
+  background-image: url("/tekstura.png"); /* <-- stavi svoju sliku */
+  background-size: cover;
+  background-position: center;
+
+  opacity: 0.18; /* probaj 0.12 - 0.25 */
+  mix-blend-mode: multiply; /* ako ti potamni, makni ovu liniju */
+
+  pointer-events: none;
 }
 
 /* flap (top triangle) */
@@ -110,9 +151,11 @@ body {
   position: absolute;
   top: 0;
   z-index: 2;
+
   border-top: 130px solid var(--envelope-tab);
   border-right: 150px solid transparent;
   border-left: 150px solid transparent;
+
   transform-origin: top;
   transition: all 0.5s ease-in-out 0.7s;
 }
@@ -122,57 +165,56 @@ body {
   content: "";
   position: absolute;
   z-index: 2;
-  width: 0px;
-  height: 0px;
+
+  width: 0;
+  height: 0;
   border-top: 130px solid transparent;
   border-right: 150px solid var(--envelope-cover);
   border-bottom: 100px solid var(--envelope-cover);
   border-left: 150px solid var(--envelope-cover);
 }
 
-/* letter inside */
+/* letter inside (ZATVORENO) */
 .envelope > .letter {
+  transform: scale(0.95);
+
   position: absolute;
   right: 20%;
-  bottom: 0;
+  bottom: 40px; /* da je “unutra” */
+
   width: 54%;
   height: 80%;
   background: var(--primary);
   text-align: center;
+
   transition: all 1s ease-in-out;
   box-shadow: 0 0 5px var(--shadow-color);
   padding: 20px 10px;
   border-radius: 6px;
-  z-index: 1;
+
+  z-index: 1; /* ispod covera */
+  transform: scale(1);
 }
 
-.envelope > .letter > .text {
-  font-family:
-    system-ui,
-    -apple-system,
-    Segoe UI,
-    Roboto,
-    Arial,
-    sans-serif;
-  color: var(--txt-color);
-  text-align: left;
-  font-size: 10px;
-}
-
-/* OPEN STATE (your .flap) */
-.flap > .envelope:before {
+/* OPEN STATE */
+.envelope-wrapper.flap > .envelope::before {
   transform: rotateX(180deg);
   z-index: 0;
 }
-.flap > .envelope > .letter {
+
+.envelope-wrapper.flap > .envelope > .letter {
   bottom: 100px;
   transform: scale(1.5);
   transition-delay: 1s;
+
+  z-index: 6; /* iznad covera + iznad teksture */
 }
+
 /* ---- EXTRA: after open, envelope slides down, letter stays ---- */
 .slideDown {
   animation: envSlideDown 800ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
 }
+
 @keyframes envSlideDown {
   to {
     transform: translateY(520px);
@@ -180,16 +222,18 @@ body {
   }
 }
 
-/* fade overlay out (optional) */
+/* fade overlay out */
 .envFadeOut {
   animation: envFade 520ms ease forwards;
 }
+
 @keyframes envFade {
   to {
     opacity: 0;
     visibility: hidden;
   }
 }
+
 /* SEAL (wax stamp) */
 .seal {
   position: absolute;
@@ -198,9 +242,9 @@ body {
   transform: translate(-50%, -20%);
   width: 60px;
   height: 60px;
-  border-radius: 999px;
-  background: var(--heart-color);
-  z-index: 4;
+
+  background: transparent;
+  z-index: 7;
 
   display: flex;
   align-items: center;
@@ -211,23 +255,23 @@ body {
   font-size: 14px;
   letter-spacing: 1px;
 
-  box-shadow: 0 1px 6px var(--shadow-color);
   cursor: pointer;
   transition: transform 0.5s ease-in-out 1s;
 
-  overflow: hidden; /* bitno da sjaj ne izlazi van */
+  overflow: hidden;
+}
+.seal-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
 }
 
-/* mali "shine" efekt da izgleda kao vosak */
 .seal::after {
   content: "";
   position: absolute;
-  inset: 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
 }
 
-/* ✅ mali sjaj u jednom cosku */
 .seal::before {
   content: "";
   position: absolute;
@@ -236,13 +280,118 @@ body {
   width: 16px;
   height: 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(232, 232, 232, 0.3);
   filter: blur(1px);
   transform: rotate(-15deg);
 }
 
-/* OPEN STATE */
-.flap > .seal {
+.envelope-wrapper.flap > .seal {
   transform: translate(-50%, -20%) scale(0.95);
   transition-delay: 0.4s;
+}
+
+.lid {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-right: 150px solid transparent;
+  border-bottom: 100px solid transparent;
+  border-left: 150px solid transparent;
+  transform-origin: top;
+  transition: transform 0.25s linear;
+}
+.lid.one {
+  border-top: 100px solid #e8e8e8;
+  transform: rotateX(0deg);
+  z-index: 3;
+  transition-delay: 0.75s;
+  /* Dodaj texturu i na lid */
+  /* background-image: url("https://www.transparenttextures.com/patterns/paper.png"); */
+}
+.lid.two {
+  border-top: 100px solid #f5f5f5;
+  transform: rotateX(90deg);
+  z-index: 1;
+  transition-delay: 0.5s;
+}
+.envelope {
+  box-shadow: -3px 12px 40px var(--shadow-color);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-top: 100px solid transparent;
+  border-right: 150px solid #ffffff;
+  border-bottom: 100px solid #ffffff;
+  border-left: 150px solid #f0f0f0;
+  z-index: 3;
+}
+
+.texture {
+  position: absolute;
+  inset: 0;
+  z-index: 3; /* iznad .envelope i lidova, ispod pečata i pisma */
+  background-image: url("/tekstura.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.22; /* tweak 0.12 - 0.35 */
+  mix-blend-mode: multiply; /* ako potamni, makni ovu liniju */
+  pointer-events: none;
+}
+
+.letter-n {
+  position: absolute;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background-color: white;
+  border-radius: 15px;
+  z-index: 2;
+  transition: 0.7s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+/* .letter-n img {
+  width: 100%;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+} */
+.wrapper.open .lid.one {
+  transform: rotateX(90deg);
+  transition-delay: 0s;
+}
+.wrapper.open .lid.two {
+  transform: rotateX(180deg);
+  transition-delay: 0.25s;
+}
+.wrapper.open .letter-n {
+  transform: translateY(-70px);
+  transition-delay: 0.2s;
+}
+
+/* Animacija pečata pri otvaranju */
+.wrapper.open .seal {
+  animation: breakSeal 0.3s ease-in-out forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes breakSeal {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
 }

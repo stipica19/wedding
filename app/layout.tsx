@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Euphoria_Script } from "next/font/google";
+import { Della_Respira, Euphoria_Script } from "next/font/google";
 import localFont from "next/font/local";
 
 export const cherish = Euphoria_Script({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-cherish",
+});
+
+export const della1 = Della_Respira({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-della1",
 });
 
 export const patrickOklahoma = localFont({
@@ -20,22 +26,22 @@ export const patrickOklahoma = localFont({
   variable: "--font-patrick-oklahoma",
   display: "swap",
 });
-export const della = localFont({
-  src: [
-    {
-      path: "../public/fonts/della.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/della-bold.ttf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-della",
-  display: "swap",
-});
+// export const della = localFont({
+//   src: [
+//     {
+//       path: "../public/fonts/della.otf",
+//       weight: "400",
+//       style: "normal",
+//     },
+//     {
+//       path: "../public/fonts/della-bold.ttf",
+//       weight: "700",
+//       style: "normal",
+//     },
+//   ],
+//   variable: "--font-della",
+//   display: "swap",
+// });
 
 export const metadata: Metadata = {
   title: "Wedding of Nikolina & Ivan",
@@ -50,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="hr">
       <body
-        className={`${cherish.variable} ${patrickOklahoma.variable} ${della.variable}`}
+        className={`${cherish.variable} ${patrickOklahoma.variable}  ${della1.className}`}
       >
         {children}
       </body>

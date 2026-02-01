@@ -9,6 +9,7 @@ import BgMusic from "@/components/bgMusic";
 import Preloader from "@/components/Preloader";
 import { useEffect, useRef, useState } from "react";
 import InviteText from "@/components/InviteText";
+import { is } from "zod/locales";
 
 export default function HomePage() {
   const leftName = "Nikolina";
@@ -39,7 +40,7 @@ export default function HomePage() {
 
     autoOpenRef.current = window.setTimeout(() => {
       openEnvelope();
-    }, 1000);
+    }, 1200);
 
     return () => {
       if (autoOpenRef.current) {
@@ -51,37 +52,21 @@ export default function HomePage() {
   return (
     <>
       {!hideOverlay && (
-        <div className={`envOverlay ${slide ? "envFadeOut" : ""}`}>
-          <div className="envContainer">
-            <div
-              className={[
-                "envelope-wrapper",
-                isOpen ? "flap" : "",
-                slide ? "slideDown" : "",
-              ].join(" ")}
-              onClick={openEnvelope}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) =>
-                (e.key === "Enter" || e.key === " ") && openEnvelope()
-              }
-            >
-              <div className="envelope">
-                <div className="letter">
-                  <div className="text">
-                    <img
-                      src="/pozivnica.webp"
-                      alt="Pozivnica"
-                      className="letterImage"
-                    />
-                  </div>
-                </div>
-              </div>
-              {/* <div className="heart" /> */}
-              <div className="seal font-patrick ">
-                N <span className="font-cherish ">&</span>I
-              </div>
+        <div className="envOverlay">
+          <div
+            className={`wrapper ${isOpen ? "open" : ""}`}
+            onClick={openEnvelope}
+          >
+            <div className="lid one"></div>
+            <div className="lid two"></div>
+            <div className="envelope"></div>
+            <div className="texture"></div>
+
+            <div className="seal">
+              <img src="/pecat.png" alt="pečat" className="seal-img" />
             </div>
+
+            <img src="/pozivnica.webp" alt="Slika" className="letter-n" />
           </div>
         </div>
       )}
