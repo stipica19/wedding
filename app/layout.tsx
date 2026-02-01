@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Della_Respira, Euphoria_Script } from "next/font/google";
+import { Della_Respira, Euphoria_Script, Great_Vibes } from "next/font/google";
 import localFont from "next/font/local";
 
 export const cherish = Euphoria_Script({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-cherish",
+});
+
+export const great_vibes = Great_Vibes({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-great-vibes",
 });
 
 export const della1 = Della_Respira({
@@ -26,26 +32,15 @@ export const patrickOklahoma = localFont({
   variable: "--font-patrick-oklahoma",
   display: "swap",
 });
-// export const della = localFont({
-//   src: [
-//     {
-//       path: "../public/fonts/della.otf",
-//       weight: "400",
-//       style: "normal",
-//     },
-//     {
-//       path: "../public/fonts/della-bold.ttf",
-//       weight: "700",
-//       style: "normal",
-//     },
-//   ],
-//   variable: "--font-della",
-//   display: "swap",
-// });
 
 export const metadata: Metadata = {
   title: "Wedding of Nikolina & Ivan",
   description: "Join us in celebrating our special day!",
+  themeColor: "#ffffff",
+  other: {
+    "color-scheme": "light",
+    "supported-color-schemes": "light",
+  },
 };
 
 export default function RootLayout({
@@ -55,8 +50,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="hr">
+      <head>
+        <meta name="color-scheme" content="light" />
+        <meta name="supported-color-schemes" content="light" />
+        <meta name="theme-color" content="#ffffff" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      </head>
       <body
-        className={`${cherish.variable} ${patrickOklahoma.variable}  ${della1.className}`}
+        className={`${cherish.variable} ${patrickOklahoma.variable}  ${della1.className} ${great_vibes.variable}`}
       >
         {children}
       </body>

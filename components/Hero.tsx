@@ -87,7 +87,7 @@ export default function Hero({
       className="text-center flex flex-col items-center min-h-[85vh] sm:min-h-fit overflow-hidden"
     >
       <div
-        className="mx-auto mb-6 pt-10 min-h-[50vh] flex justify-center"
+        className="mx-auto mb-6 pb-0.5  pt-10 min-h-[50vh] flex justify-center"
         ref={heroImgRef}
         style={{
           transform: `scale(${heroScale})`,
@@ -100,14 +100,14 @@ export default function Hero({
           alt={imageAlt}
           width={imageWidth}
           height={imageWidth}
-          className="h-auto"
+          className="h-auto "
           priority
         />
       </div>
 
       <h1
         ref={heroTitleRef}
-        className="text-[60px] font-patrick tracking-tight sm:text-4xl"
+        className="text-[60px] font-great_vibes  tracking-tight sm:text-4xl"
         style={{
           transform: `scale(${heroScale})`,
           transformOrigin: "center",
@@ -118,13 +118,13 @@ export default function Hero({
           <span
             key={`l-${i}-${ch}`}
             data-letter
-            className="inline-block text-(--heart-color) will-change-transform"
+            className="inline-block text-(--heart-color) font-great_vibes  will-change-transform"
           >
             {ch}
           </span>
         ))}
         <span
-          className="font-cherish text-(--heart-color) inline-block will-change-transform"
+          className="font-great_vibes  text-(--heart-color) inline-block will-change-transform"
           data-letter
         >
           &nbsp;&amp;&nbsp;

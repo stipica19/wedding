@@ -81,7 +81,7 @@ export default function Preloader({
         />
         <h1
           ref={titleRef}
-          className="mt-4 text-4xl font-patrick tracking-tight"
+          className="mt-4 text-4xl font-great_vibes tracking-tight"
         >
           {leftName.split("").map((ch, i) => (
             <span key={`pl-l-${i}-${ch}`} data-letter className="inline-block">
