@@ -97,20 +97,6 @@ body {
   overflow: hidden;
 }
 
-/* .letterImage {
-  width: 100%;
-  max-width: 220px;
-  height: auto;
-  border-radius: 12px;
-  display: block;
-  margin: 0 auto;
-
-
-  transform: translateY(40px);
-  opacity: 0;
-  transition: all 1.2s ease-in-out;
-} */
-
 .envelope-wrapper.flap .letterImage {
   transform: translateY(0px);
   opacity: 1;

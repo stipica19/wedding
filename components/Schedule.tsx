@@ -41,7 +41,7 @@ export default function Schedule({ items }: ScheduleProps) {
       href: "https://www.google.com/maps/place/Crkva+Uznesenja+Bla%C5%BEene+Djevice+Marije/@43.9387542,17.5823687,1121m/data=!3m2!1e3!4b1!4m6!3m5!1s0x475f0cb9d14f3971:0x3eb86acfc5cc03c8!8m2!3d43.9387542!4d17.5823687!16s%2Fm%2F0q3y0jq?entry=ttu&g_ep=EgoyMDI2MDEyNi4wIKXMDSoASAFQAw%3D%3D",
       icon: <img src="/ring.png" alt="" className="h-13 w-11 " />,
       title: "18:00 VJENČANJE",
-      place: "”UZNESENJE BLAŽENE DJEVICE MARIJE”",
+      place: "”UZNESENJA BLAŽENE DJEVICE MARIJE”",
       address: "Uskoplje",
     },
     {

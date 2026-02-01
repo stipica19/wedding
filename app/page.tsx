@@ -49,6 +49,23 @@ export default function HomePage() {
       }
     };
   }, [hideOverlay, isOpen]);
+
+  useEffect(() => {
+    if (!hideOverlay) {
+      // lock scroll
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      // unlock scroll
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    };
+  }, [hideOverlay]);
   return (
     <>
       {!hideOverlay && (
@@ -73,8 +90,7 @@ export default function HomePage() {
       <main
         style={{
           opacity: hideOverlay ? 1 : 0,
-          transform: hideOverlay ? "translateY(0)" : "translateY(10px)",
-          transition: "all 600ms ease",
+          transition: "opacity 600ms ease",
         }}
         className="overflow-hidden"
       >
