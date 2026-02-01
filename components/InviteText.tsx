@@ -43,9 +43,7 @@ export default function InviteText() {
     <section ref={wrapRef} className="mt-6">
       <p
         ref={textRef}
-        className="text-[17px] font-della text-center max-w-lg mx-auto px-4 sm:px-0
-             [text-rendering:optimizeLegibility] [-webkit-font-smoothing:antialiased]
-             [transform:translateZ(0)]"
+        className="text-[17px] font-della text-center max-w-lg mx-auto px-4 sm:px-0 [-webkit-font-smoothing:antialiased]"
       >
         POZIVAMO VAS DA SVOJIM DOLASKOM ULJEPŠATE NAŠE VJENČANJE
       </p>
