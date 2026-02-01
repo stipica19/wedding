@@ -99,7 +99,7 @@ export default function HomePage() {
           <Hero
             leftName={leftName}
             rightName={rightName}
-            imageSrc="/crkva1.png"
+            imageSrc="/crkva.png"
             imageAlt="Crkva"
             animate={hideOverlay}
           />
