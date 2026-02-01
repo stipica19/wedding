@@ -49,7 +49,14 @@ body {
   --txt-color: #444;
   --heart-color: #d5b038;
 }
-
+.iosFontFix {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+.font-smooth-ios {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
 .splash {
   position: absolute;
   top: 0;

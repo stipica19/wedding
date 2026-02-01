@@ -23,13 +23,9 @@ function ScheduleItem({ href, icon, title, place, address }: ScheduleItemData) {
             <div className="text-[16px] font-bold text-(--heart-color)  tracking-wide font-della uppercase">
               {title}
             </div>
-            <p className="mt-1 text-[16px] font-extrabold  leading-relaxed text-black/80 font-della">
-              <strong>{place}</strong>
+            <p className="mt-1 text-[16px] font-extrabold leading-relaxed text-black/80 font-della whitespace-normal break-keep wrap-normal">
+              <strong className="break-keep wrap-normal">{place}</strong>
             </p>
-            {/* <div className="flex flex-row items-center gap-1 mt-2">
-                <MapPin className="w-4 h-4" style={{ color: "var(--blush)" }} />{" "}
-                {address}
-              </div> */}
           </div>
         </div>
       </a>

@@ -7,8 +7,7 @@ export default function RsvpInfo() {
       <div className="flex justify-center my-8"></div>
       <div className="rounded-3xl bg-transparent p-2 ">
         <p className="text-[40px] font-great_vibes tracking-tight text-center">
-          Veselimo se va
-          <span className="font-cherish text-lg">š</span>em dolasku
+          Veselimo se vašem dolasku
         </p>
         <Reveal shrink={false} delay={160}>
           <p className="mt-1 text-xs text-black/70 text-center">
