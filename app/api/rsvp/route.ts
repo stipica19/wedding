@@ -47,7 +47,7 @@ export async function POST(req: Request) {
             "";
         const userAgent = req.headers.get("user-agent") || "";
         const last = await Rsvp.findOne({ ip }).sort({ createdAt: -1 }).lean();
-        if (last && Date.now() - new Date(last.createdAt).getTime() < 15_000) {
+        if (last && Date.now() - new Date(last.createdAt).getTime() < 5_000) {
             return NextResponse.json(
                 { ok: false, error: "Too many requests" },
                 { status: 429 }

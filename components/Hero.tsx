@@ -118,7 +118,7 @@ export default function Hero({
   return (
     <section
       ref={heroRef}
-      className="text-center flex flex-col items-center min-h-[85vh] sm:min-h-fit overflow-hidden"
+      className="text-center flex flex-col items-center min-h-[85vh] sm:min-h-fit overflow-hidden "
     >
       <div
         className="mx-auto mb-6 pb-0.5 pt-10 min-h-[50vh] flex justify-center"

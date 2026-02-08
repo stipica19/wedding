@@ -95,7 +95,7 @@ export default function HomePage() {
         className="overflow-hidden"
       >
         <BgMusic />
-        <div className="rounded-3xl bg-transparent p-2 ">
+        <div className="bg-transparent p-2  ">
           <Hero
             leftName={leftName}
             rightName={rightName}
