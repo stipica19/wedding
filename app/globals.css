@@ -1,6 +1,6 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
-
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:where(.dark, .dark *));
 .font-patrick {
   font-family: var(--font-patrick-oklahoma), cursive;
 }
@@ -45,6 +45,10 @@ body {
   --shadow-color: rgba(0, 0, 0, 0.2);
   --txt-color: #444;
   --heart-color: #d5b038;
+}
+.dark {
+  --background: #171717;
+  --foreground: #ffffff;
 }
 .iosFontFix {
   -webkit-font-smoothing: antialiased;
@@ -137,7 +141,7 @@ body {
   z-index: 4; /* iznad ::before i ::after */
   border-radius: 10px;
 
-  background-image: url('/tekstura.png'); /* <-- stavi svoju sliku */
+  background-image: url("/tekstura.png"); /* <-- stavi svoju sliku */
   background-size: cover;
   background-position: center;
 
@@ -149,7 +153,7 @@ body {
 
 /* flap (top triangle) */
 .envelope-wrapper > .envelope::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   z-index: 2;
@@ -164,7 +168,7 @@ body {
 
 /* front cover */
 .envelope-wrapper > .envelope::after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 2;
 
@@ -269,13 +273,13 @@ body {
 }
 
 .seal::after {
-  content: '';
+  content: "";
   position: absolute;
   border-radius: 999px;
 }
 
 .seal::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 1px;
   left: 1px;
@@ -336,7 +340,7 @@ body {
   position: absolute;
   inset: 0;
   z-index: 3; /* iznad .envelope i lidova, ispod pečata i pisma */
-  background-image: url('/tekstura.png');
+  background-image: url("/tekstura.png");
   background-size: cover;
   background-position: center;
   opacity: 0.22; /* tweak 0.12 - 0.35 */

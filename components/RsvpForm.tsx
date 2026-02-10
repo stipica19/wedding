@@ -94,7 +94,7 @@ export default function RsvpForm() {
 
   return (
     <Reveal shrink={false}>
-      <div className="rounded-3xl mt-2 bg-trasparent p-2 ">
+      <div className="rounded-3xl mt-2 bg-white p-2 ">
         <form onSubmit={onSubmit} className="space-y-6">
           {/* Status */}
           <div className="space-y-6">
