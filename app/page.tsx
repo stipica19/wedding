@@ -1,19 +1,19 @@
-"use client";
-import Hero from "@/components/Hero";
-import EventDate from "@/components/EventDate";
-import Schedule from "@/components/Schedule";
-import RsvpInfo from "@/components/RsvpInfo";
-import RsvpForm from "@/components/RsvpForm";
-import FooterNote from "@/components/FooterNote";
-import BgMusic from "@/components/bgMusic";
-import Preloader from "@/components/Preloader";
-import { useEffect, useRef, useState } from "react";
-import InviteText from "@/components/InviteText";
-import { is } from "zod/locales";
+'use client';
+import Hero from '@/components/Hero';
+import EventDate from '@/components/EventDate';
+import Schedule from '@/components/Schedule';
+import RsvpInfo from '@/components/RsvpInfo';
+import RsvpForm from '@/components/RsvpForm';
+import FooterNote from '@/components/FooterNote';
+import BgMusic from '@/components/bgMusic';
+import Preloader from '@/components/Preloader';
+import { useEffect, useRef, useState } from 'react';
+import InviteText from '@/components/InviteText';
+import { is } from 'zod/locales';
 
 export default function HomePage() {
-  const leftName = "Nikolina";
-  const rightName = "Ivan";
+  const leftName = 'Nikolina';
+  const rightName = 'Ivan';
 
   const [isOpen, setIsOpen] = useState(false);
   const [slide, setSlide] = useState(false);
@@ -53,27 +53,24 @@ export default function HomePage() {
   useEffect(() => {
     if (!hideOverlay) {
       // lock scroll
-      document.body.style.overflow = "hidden";
-      document.body.style.touchAction = "none";
+      document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
     } else {
       // unlock scroll
-      document.body.style.overflow = "";
-      document.body.style.touchAction = "";
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
     }
 
     return () => {
-      document.body.style.overflow = "";
-      document.body.style.touchAction = "";
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
     };
   }, [hideOverlay]);
   return (
     <>
       {!hideOverlay && (
         <div className="envOverlay">
-          <div
-            className={`wrapper ${isOpen ? "open" : ""}`}
-            onClick={openEnvelope}
-          >
+          <div className={`wrapper ${isOpen ? 'open' : ''}`} onClick={openEnvelope}>
             <div className="lid one"></div>
             <div className="lid two"></div>
             <div className="envelope"></div>
@@ -90,12 +87,12 @@ export default function HomePage() {
       <main
         style={{
           opacity: hideOverlay ? 1 : 0,
-          transition: "opacity 600ms ease",
+          transition: 'opacity 600ms ease',
         }}
-        className="overflow-hidden"
-      >
+        className="overflow-hidden">
         <BgMusic />
-        <div className="bg-transparent p-2  ">
+        <div className="bg-white p-2">
+          {' '}
           <Hero
             leftName={leftName}
             rightName={rightName}
@@ -107,7 +104,6 @@ export default function HomePage() {
           <section className="mt-6">
             <EventDate day="03" month="08" year="2026" />
           </section>
-
           <section className="mt-0 grid gap-4 md:grid-cols-1 max-w-xl mx-auto">
             <div className="rounded-3xl bg-white p-2 ">
               <Schedule />
@@ -116,19 +112,11 @@ export default function HomePage() {
             <RsvpInfo />
           </section>
           <section className="mt-5 relative">
-            <img
-              src="/splash.png"
-              alt=""
-              className=" absolute bottom-0  -z-10 opacity-90"
-            />
+            <img src="/splash.png" alt="" className=" absolute bottom-0 z-10 opacity-90" />
           </section>
           <section className="mt-6 relative max-w-xl  mx-auto">
             <RsvpForm />
-            <img
-              src="/splash.png"
-              alt=""
-              className=" absolute bottom-0 left-0  -z-10 opacity-90"
-            />
+            <img src="/splash.png" alt="" className=" absolute bottom-0 left-0  z-10 opacity-90" />
           </section>
         </div>
 
